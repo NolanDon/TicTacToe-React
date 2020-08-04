@@ -24,4 +24,10 @@ function Square(props) {
 function Board() {
   const [boardSquares, setBoardSquare] = useState([Array(9).fill(null)]);
   const [xIsNext, setXisNext] =  useState(true);
+
+  const handleClick = index => {
+    const squares = [...boardSquares];
+
+    if (squares[index]) return;
+  }
 }
