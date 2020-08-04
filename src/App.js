@@ -29,5 +29,6 @@ function Board() {
     const squares = [...boardSquares];
 
     if (squares[index]) return;
+    squares[index] = xIsNext ? "X" : "O"
   }
 }
