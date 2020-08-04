@@ -37,3 +37,16 @@ function Board() {
     setXIsNext(!xIsNext);
   }
 }
+
+
+const renderSquare = (index) => {
+
+return (
+  <div>
+    <div/>
+    <div/>
+    <div/>
+    <div/>
+  </div>
+)
+}
