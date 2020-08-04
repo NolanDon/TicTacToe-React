@@ -25,8 +25,11 @@ function Board() {
 
   const handleClick = (index) => {
     const squares = [...boardSquares];
+    console.log('squares: ', squares)
     console.log(index)
-    if ( calculateWinner(boardSquares) || squares[index]) return;
+    console.log('calculateWinner: ', calculateWinner(boardSquares))
+
+    if (calculateWinner(boardSquares) || squares[index]) return;
 
     squares[index] = xIsNext ? "X" : "O";
 
@@ -34,6 +37,7 @@ function Board() {
 
     setXIsNext(!xIsNext);
   };
+  
 
   function Square(props) {
     return <button className={classes.button} onClick={props.onClick}>{props.value}</button>;
@@ -45,26 +49,27 @@ function Board() {
     );
   };
 
-  const calculateWinner = (squares) => {
+  function calculateWinner(squares) {
 
     const winning = [
-      [1,2,3],
-      [4,5,6],
-      [7,8,9],
+      [0,1,2],
+      [3,4,5],                        
+      [6,7,8],
+      [0,3,6],
       [1,4,7],
       [2,5,8],
-      [3,6,9],
-      [1,5,9],
-      [3,5,7],
+      [0,4,8],
+      [2,4,6],
     ]
 
-    for (let i = 0; i > winning.length; i++) {
+    for (let i = 0; i < winning.length; i++) {
       const [a,b,c] = winning[i]
+
       if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-        return squares[a]
+        return squares[a];
       }
-      return null
     }
+    return null
   }
 
   //initialize status
