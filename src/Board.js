@@ -25,8 +25,8 @@ function Board() {
 
   const handleClick = (index) => {
     const squares = [...boardSquares];
-
-    if (squares[index]) return;
+    console.log(index)
+    if ( calculateWinner(boardSquares) || squares[index]) return;
 
     squares[index] = xIsNext ? "X" : "O";
 
@@ -45,9 +45,34 @@ function Board() {
     );
   };
 
+  const calculateWinner = (squares) => {
+
+    const winning = [
+      [1,2,3],
+      [4,5,6],
+      [7,8,9],
+      [1,4,7],
+      [2,5,8],
+      [3,6,9],
+      [1,5,9],
+      [3,5,7],
+    ]
+
+    for (let i = 0; i > winning.length; i++) {
+      const [a,b,c] = winning[i]
+      if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
+        return squares[a]
+      }
+      return null
+    }
+  }
+
   //initialize status
   let status;
-  status = `Next Player: ${xIsNext ? 'X' : 'O'}`
+  const winner = calculateWinner(boardSquares)
+  status = winner ? 
+  `Winner = ${winner}` :
+  `Next Player: ${xIsNext ? 'X' : 'O'}`
 
 
   return (
