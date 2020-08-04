@@ -72,11 +72,15 @@ function Board() {
     return null
   }
 
-  //initialize status
+  const resetGame = () => {
+    setBoardSquares([Array(9).fill(null)]);
+  }
+
   let status;
   const winner = calculateWinner(boardSquares)
-  status = winner ? 
-  `Winner = ${winner}` :
+  status = winner ?
+  `Winner = ${winner}`
+  :
   `Next Player: ${xIsNext ? 'X' : 'O'}`
 
 
@@ -98,11 +102,12 @@ function Board() {
         {renderSquare(8)}
         {renderSquare(9)}
       </div>
-      <button onClick={() => {
-        resetGame()
-      }}>
-        reset
-      </button>
+      {calculateWinner(boardSquares) ? 
+        <button className={classes.resetButton} onClick={() => {
+          resetGame()
+        }}>
+          New Match
+        </button> : null}
     </div>
   );
 }
