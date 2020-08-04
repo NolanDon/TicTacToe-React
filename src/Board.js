@@ -25,10 +25,6 @@ function Board() {
 
   const handleClick = (index) => {
     const squares = [...boardSquares];
-    console.log('squares: ', squares)
-    console.log(index)
-    console.log('calculateWinner: ', calculateWinner(boardSquares))
-
     if (calculateWinner(boardSquares) || squares[index]) return;
 
     squares[index] = xIsNext ? "X" : "O";
