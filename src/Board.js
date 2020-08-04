@@ -3,8 +3,18 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   boardRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    overflowWrap: 'wrap',
+        height: '50px'
+  },
+  button: { 
     width: '50px',
     height: '50px'
+  },
+  status: {
+    textAlign: 'center',
+    margin: '50px'
   }
 })
 
@@ -26,7 +36,7 @@ function Board() {
   };
 
   function Square(props) {
-    return <button onClick={props.onClick}>{props.value}</button>;
+    return <button className={classes.button} onClick={props.onClick}>{props.value}</button>;
   }
 
   const renderSquare = (index) => {
@@ -35,8 +45,14 @@ function Board() {
     );
   };
 
+  //initialize status
+  let status;
+  status = `Next Player: ${xIsNext ? 'X' : 'O'}`
+
+
   return (
     <div>
+      <div className={classes.status}>{status}</div>
       <div className={classes.boardRow}>
         {renderSquare(0)}
         {renderSquare(1)}
