@@ -22,13 +22,18 @@ function Square(props) {
 
 
 function Board() {
-  const [boardSquares, setBoardSquare] = useState([Array(9).fill(null)]);
-  const [xIsNext, setXisNext] =  useState(true);
+  const [boardSquares, setBoardSquares] = useState([Array(9).fill(null)]);
+  const [xIsNext, setXIsNext] =  useState(true);
 
   const handleClick = index => {
     const squares = [...boardSquares];
 
     if (squares[index]) return;
     squares[index] = xIsNext ? "X" : "O"
+
+
+    setBoardSquares(squares);
+
+    setXIsNext(!xIsNext);
   }
 }
